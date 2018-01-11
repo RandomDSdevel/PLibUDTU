@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Adapted from <https://apple.stackexchange.com/a/399701/70614>.  
+#
+# Changes made in this copy:  
+#  - Added this leading comment block.  
+#  - Indented code blocks by two spaces per scope level, not four.  
+#  - Made a few minor comment wording and formatting tweaks and/or fixes.  
+#  - To the `sed` script used to process `launchctl print`'s output:  
+#    - Moved it into a single-quoted string spanning multiple lines.  (Note that, when consuming a script, `sed` ignores leading and trailing lines that are empty or consist solely of whitespace.)  
+#    - Moved all comments in-line.  
+#    - In the third comment:  
+#      - Clarified that the 'ports' filtered out are Mach inter-process communication (IPC) ports.  
+#    - In non-comment line 3:  
+#      - From the first nested sub-expression in the expression on said line:  
+#        - Removed the '|' ('or' operator.)  `sed` would interpret it as a literal '|' ('pipe' character) instead (see note below;) _that's_ not what I want.  
+#
+#          (Note:  `sed` treats any regular expressions you pass it as 'basic' — that is, non-'extendd' — by default.  For more details, consult `man re_format`.)  
+#        - Add 'I' to also look and account for any possible registered-but-inactive services.  
+#
+# Usage:  
+#
+#   bslist
+#
+#      A 'quick and dirty' substitute for the obsoleted `launchctl bslist`.  Prints out a list of all `launchd` (Mach) services registered with your system's (Mach IPC) bootstrap service.  When invoked as the root user (presumably via `sudo`,) this command prints this list with respect to the `system` domain.  When invoked as a non-privileged user — that is, not the root user —, prints this list with respect to that current user account's per-user domain.  
+
+if [ $(id -u) -eq 0 ]; then
+  domain=system
+else
+  domain="user/$(id -u)"
+fi
+launchctl print $domain | sed -e '
+  # Remove all output before `endpoints = {`:  
+  1,/endpoints = {/d
+  # Remove all output after `}`:  
+  /}/,$d
+  # Remove (Mach IPC) port information and format the output the same way `launchctl bslist` used to:  
+  s/.* \([ADI]\)\(  *\)\(.*\)/\1  \3/
+  ';
