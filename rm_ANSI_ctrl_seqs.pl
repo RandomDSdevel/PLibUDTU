@@ -12,7 +12,7 @@
 #
 # Usage:  
 #
-#      Run this program over an arbitrary text file produced by another, such as one run inside a shell, that litters its output with ANSI control sequences.  Alternatively, insert this script into the path of output which would, when saved to a text file, likewise be littered with ANSI control sequences, either by adding it to a pipeline or involving it in a process substitution.  
+#      Run this script over arbitrary text produced by another (command-line) process that litters its output with ANSI control sequences.  This Perl code is suitable for use as a filter either in a stand-alone manner or as part of a shell pipeline.  It can also get invoked as part of shell process substitution.  
 
 while (<>) {
   s/ \e[ #%()*+\-.\/]. |
