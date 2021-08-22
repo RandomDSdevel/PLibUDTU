@@ -4,7 +4,11 @@
 
 ## Table of Contents
 
+ - [Sunday, August 22<sup>nd</sup>, 2021](#sunday-august-22supndsup-2021)
+   - [Revision 9](#revision-9)
  - [Tuesday, September 8<sup>th</sup>, 2020](#tuesday-september-8supthsup-2020)
+   - [Revision 8](#revision-8)
+   - [Revision 7](#revision-7)
    - [Revision 6](#revision-6)
    - [Revision 5](#revision-5)
  - [Monday, September 7<sup>th</sup>, 2020](#monday-september-7supthsup-2020)
@@ -14,7 +18,26 @@
    - [Revision 2](#revision-2)
    - [Revision 1](#revision-1)
 
+## Sunday, August 22<sup>nd</sup>, 2021
+
+### Revision 9
+
+ - HISTORY.md:  
+   - Updated it by adding absent change log entries it previously lacked for revisions 7 and 8 to it.  
+
 ## Tuesday, September 8<sup>th</sup>, 2020
+
+### Revision 8
+
+ - !(*.md):  
+   - Moved into a new folder, '`bin`.'  
+
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Echo/evoke Unix conventions here.  
+
+### Revision 7
+
+ - bslist:  
+   - Created this new Bash script to use as a replacement for OS X's/macOS's `launchctl`'s deprecated/obsoleted '`bslist`' sub-command.  
 
 ### Revision 6
 
