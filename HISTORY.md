@@ -5,6 +5,7 @@
 ## Table of Contents
 
  - [Sunday, August 22<sup>nd</sup>, 2021](#sunday-august-22supndsup-2021)
+   - [Revision 10](#revision-10)
    - [Revision 9](#revision-9)
  - [Tuesday, September 8<sup>th</sup>, 2020](#tuesday-september-8supthsup-2020)
    - [Revision 8](#revision-8)
@@ -19,6 +20,11 @@
    - [Revision 1](#revision-1)
 
 ## Sunday, August 22<sup>nd</sup>, 2021
+
+### Revision 10
+
+ - bin/git-checkout-handling-switching-between-branches-with-different-contained-submodules:  
+   - Created this new Bash script to use for automating, as its name suggests, switching between Git repository branches with differences in contained submodules.  
 
 ### Revision 9
 
