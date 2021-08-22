@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Adapted from <https://stackoverflow.com/a/64690495/3319611>.  
+#
+# Changes made in this copy:  
+#
+#  - Changed it to:  
+#    - Not '`export`' the shell variables this script uses as implementation details.  
+#    - Accept the target branch to be checked out as a (mandatory) first argument.  
+#    - Quote some shell variable refernces and command substitutions as needed.  
+#    - Use a Git directory sub-folder reflecting its name internally.  
+#
+# Usage:  
+#
+#   git-checkout-handling-switching-between-branches-with-different-contained-submodules <branch>
+#
+#      Switch between branches in a Git repository when:  
+#
+#  - They each have different contained submodules.  
+#  - One branch doesn't contain any submodules and the other does.  
+#
+# Known Issues:  
+#
+#  - Currently, this script doesn't yet handle passing any options through to '`git checkout`.'  Its only supported argument is the target branch you wish to check out.  
+
+TARGET_BRANCH="$1"
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [ -f "./.gitmodules" ]; then
+  git submodules deinit --all
+  mkdir -p .git/git-checkout-handling-switching-between-branches-with-different-contained-submodules/modules
+  mv .git/modules .git/git-checkout-handling-switching-between-branches-with-different-contained-submodules/modules/"$CURRENT_BRANCH"
+fi
+
+git checkout "$TARGET_BRANCH"
+
+if [ -f ".gitmodules" ]; then
+  if [ -f ".git/git-checkout-handling-switching-between-branches-with-different-contained-submodules/modules/$TARGET_BRANCH" ]; then
+    git mv .git/git-checkout-handling-switching-between-branches-with-different-contained-submodules/modules/"$TARGET_BRANCH" .git/modules
+  fi
+
+  git submodule sync && git submodule update --init
+fi
