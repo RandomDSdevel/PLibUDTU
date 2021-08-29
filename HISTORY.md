@@ -4,6 +4,8 @@
 
 ## Table of Contents
 
+ - [Saturday, August 28<sup>th</sup>, 2021](#saturday-august-28supthsup-2021)
+   - [Revision 11](#revision-11)
  - [Sunday, August 22<sup>nd</sup>, 2021](#sunday-august-22supndsup-2021)
    - [Revision 10](#revision-10)
    - [Revision 9](#revision-9)
@@ -18,6 +20,13 @@
    - [Revision 3](#revision-3)
    - [Revision 2](#revision-2)
    - [Revision 1](#revision-1)
+
+Saturday, August 28<sup>th</sup>, 2021
+
+### Revision 11
+
+ - bin/git-checkout-handling-switching-between-branches-with-different-contained-submodules:  
+   - Removed this script; per https://lore.kernel.org/git/5a70d535-47b0-a4ea-b4e4-572a1bcfe997@gmail.com/, it's needlessly complex.  
 
 ## Sunday, August 22<sup>nd</sup>, 2021
 
